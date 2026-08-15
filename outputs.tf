@@ -24,7 +24,7 @@ output "arc_kubernetes_cluster_extensions_extension_type" {
 }
 output "arc_kubernetes_cluster_extensions_identity" {
   description = "Map of identity values across all arc_kubernetes_cluster_extensions, keyed the same as var.arc_kubernetes_cluster_extensions"
-  value       = { for k, v in azurerm_arc_kubernetes_cluster_extension.arc_kubernetes_cluster_extensions : k => v.identity if v.identity != null && length(v.identity) > 0 }
+  value       = { for k, v in azurerm_arc_kubernetes_cluster_extension.arc_kubernetes_cluster_extensions : k => one(v.identity) if v.identity != null && length(v.identity) > 0 }
 }
 output "arc_kubernetes_cluster_extensions_name" {
   description = "Map of name values across all arc_kubernetes_cluster_extensions, keyed the same as var.arc_kubernetes_cluster_extensions"
